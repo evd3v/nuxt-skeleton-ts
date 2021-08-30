@@ -1,15 +1,17 @@
+import { Module } from '@nuxt/types'
+
 const path = require('path')
 
-export default function () {
+const managerModule: Module = function () {
   const { extendRoutes, addPlugin } = this
 
-  extendRoutes((routes) => {
+  extendRoutes((routes: any) => {
     routes.push({
-      path: '/users',
+      path: '/manager',
       component: path.resolve(__dirname, 'pages/Index.vue'),
       children: [
         {
-          name: 'users-index',
+          name: 'manager-index',
           path: '/',
           component: path.resolve(__dirname, 'pages/Home.vue'),
         },
@@ -17,5 +19,7 @@ export default function () {
     })
   })
 
-  addPlugin(path.resolve(__dirname, 'plugins/add-store.js'))
+  addPlugin(path.resolve(__dirname, 'plugins/add-store.ts'))
 }
+
+export default managerModule

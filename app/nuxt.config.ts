@@ -1,4 +1,6 @@
-export default {
+import { NuxtConfig } from '@nuxt/types'
+
+const config: NuxtConfig = {
   head: {
     title: 'nuxt-skeleton',
     htmlAttrs: {
@@ -17,27 +19,19 @@ export default {
 
   plugins: [],
 
-  components: true,
+  components: false,
 
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/stylelint-module'],
+  buildModules: ['@nuxtjs/stylelint-module', '@nuxt/typescript-build'],
 
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/redirect-module',
-    '~/modules/users/index.js',
-  ],
-
-  /* @nuxtjs/redirect-module
-   * add redirect for trailing slash
-   */
-  redirect: [
-    {
-      from: '^(\\/[^\\?]*[^\\/])(\\?.*)?$',
-      to: '$1/$2',
-    },
+    '~/modules/users/index.ts',
+    '~/modules/manager/index.ts',
   ],
 
   axios: {},
 
   build: {},
 }
+
+export default config
